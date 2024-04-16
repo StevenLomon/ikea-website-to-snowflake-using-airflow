@@ -12,6 +12,8 @@ env/
 .bash_history
 .viminfo
 .dotnet/
+github-ssh
+github-ssh.pub
 
 # Ignore everything in the airflow folder
 airflow/*
