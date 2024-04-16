@@ -14,12 +14,10 @@ env/
 .dotnet/
 github-ssh
 github-ssh.pub
+*__pycache__/
 
 # Ignore everything in the airflow folder
 airflow/*
 
 # But do not ignore the dags folder
 !airflow/dags/
-
-# Ignore specific files/folders inside of the dags folder
-airflow/dags/__pycache__/
