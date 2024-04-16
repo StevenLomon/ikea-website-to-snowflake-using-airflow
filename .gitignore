@@ -1,0 +1,20 @@
+env/
+.gitconfig
+.aws
+.cache
+.ssh
+.vscode-server
+.bash_logout
+.bashrc
+.profile
+.sudo_as_admin_successful
+.wget-hsts
+.bash_history
+.viminfo
+.dotnet/
+
+# Ignore everything in the airflow folder
+airflow/*
+
+# But do not ignore the dags folder
+!airflow/dags/
