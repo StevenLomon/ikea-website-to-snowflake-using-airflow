@@ -2,6 +2,7 @@ import boto3
 import pandas as pd
 from airflow import DAG
 from airflow.operators.python import PythonOperator
+from airflow.operators.bash import BashOperator
 from datetime import timedelta, datetime
 from ikea_etl import extract_raw_data, transform_raw_ikea_data
 
@@ -63,3 +64,10 @@ with DAG('ikea_dag',
         task_id= 'tsk_transform_ikea_data',
         python_callable=transform_data,
     )
+
+    load_raw_data_to_s3 = BashOperator(
+        task_id= 'tsk_load_raw_data_to_s3',
+        bash_command = 'aws s3 mv {{ ti.xcom_pull("tsk_extract_ikea_data")[0]}} s3://ikea-airflow-bucket-raw-data'
+    )
+
+    extract_ikea_data >> transform_ikea_data >> load_raw_data_to_s3
