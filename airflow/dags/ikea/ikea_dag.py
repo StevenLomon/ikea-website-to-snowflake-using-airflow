@@ -8,6 +8,13 @@ url = "https://www.ikea.com/se/sv/new/new-products/"
 def extract_data(**kwargs):
     url = kwargs['url']
     df = extract_raw_data(url)
+    now = datetime.now()
+    date_now_string = now.strftime('%Y-%m-%d')
+    print(f"Date: {date_now_string}")
+    file_str = f"ikea_data_{date_now_string}"
+    df.to_csv(f"{file_str}.csv", index=False)
+    output_file_path = f"/home/ubuntu/{file_str}.csv"
+    return [output_file_path, file_str]
 
 default_args = {
     'owner': 'airflow',
